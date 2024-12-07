@@ -31,7 +31,7 @@ const Cast = ({ id }: CastProps) => {
     console.log(actors);
 
     return (
-        <div>
+        <div className="mb-20">
             <h2 className="text-2xl font-bold text-left mb-4">Top Cast</h2>
             <Swiper
                 spaceBetween={20}

@@ -22,12 +22,16 @@ body {
 
 .box {
     box-shadow: 0px 2px 165px 19px #111111 inset;
-
     mask-image: radial-gradient(circle, #111111 70%, rgba(0, 0, 0, 0) 100%);
 }
 
 .box_child {
-    box-shadow: 0px -44px 100px -78px rgba(0, 0, 0, 1) inset;
+    background: rgb(17, 17, 17);
+    background: linear-gradient(
+        0deg,
+        rgba(17, 17, 17, 1) 20%,
+        rgba(255, 68, 89, 0) 100%
+    );
 }
 
 .movie_cont:hover .movie_item {
@@ -55,4 +59,13 @@ input {
 
 .btn {
     border: 1px solid white;
+}
+
+header {
+    background: rgb(255, 68, 89);
+    background: linear-gradient(
+        0deg,
+        rgba(255, 68, 89, 0) 0%,
+        rgba(17, 17, 17, 1) 100%
+    );
 }

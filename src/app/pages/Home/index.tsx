@@ -13,6 +13,8 @@ type history = {
     overview: string;
     release_date: string;
     backdrop_path: string;
+    title: string;
+    poster_path: string;
 };
 
 const HomePage = () => {
@@ -41,7 +43,7 @@ const HomePage = () => {
         };
         fetchAllMovies();
     }, []);
-    console.log(popularMovies);
+    const randomMovie = Math.floor(Math.random() * 20) + 1;
 
     return (
         <div>
@@ -52,57 +54,68 @@ const HomePage = () => {
                     <div
                         className="box w-full h-[80vh] mb-10 relative flex items-end"
                         style={{
-                            backgroundImage: `url(https://image.tmdb.org/t/p/w1280${historyMovies[0]?.backdrop_path})`,
+                            backgroundImage: `url(https://image.tmdb.org/t/p/w1280${historyMovies[randomMovie]?.backdrop_path})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                         }}
                     >
-                        <div className="box_child mx-auto container  bottom-0">
-                            <h2 className="mb-5">
-                                {historyMovies[0]?.original_title}
-                            </h2>
-                            <div className="flex items-center gap-5 mb-10">
-                                <p className="p-3 border rounded-[36px] border-white border-solid">
-                                    CBFC:U/A
-                                </p>
-                                <p className="p-3 border rounded-[36px] border-white border-solid">
-                                    {historyMovies[0]?.vote_average} / 10
-                                </p>
-                                <p>{historyMovies[0]?.release_date}</p>
-                            </div>
-                            <div className="pb-10 flex items-center justify-between ">
-                                <div className="flex items-center gap-7">
-                                    <button className="flex items-center gap-3 bg-white py-4 px-8 rounded-[40px]">
-                                        <FaPlayCircle
-                                            width={20}
-                                            hanging={20}
-                                            color="#111111"
-                                        />
-                                        <span className="text-black ">
-                                            Watch Now
-                                        </span>
-                                    </button>
-                                    <button className="flex items-center gap-3 bg-[#111111]  py-4 px-8 rounded-[40px]">
-                                        <MdOutlineBookmarkAdded
-                                            width={20}
-                                            hanging={20}
-                                            color="#fff"
-                                        />
-                                        <span className="text-white ">
-                                            Add Watchlist
-                                        </span>
-                                    </button>
+                        <div className="box_child w-full">
+                            <div className=" mx-auto container  bottom-0">
+                                <h2 className="mb-5">
+                                    {historyMovies[randomMovie]?.original_title}
+                                </h2>
+                                <div className="flex items-center gap-5 mb-10">
+                                    <p className="p-3 border rounded-[36px] border-white border-solid">
+                                        CBFC:U/A
+                                    </p>
+                                    <p className="p-3 border rounded-[36px] border-white border-solid">
+                                        {
+                                            historyMovies[randomMovie]
+                                                ?.vote_average
+                                        }{" "}
+                                        / 10
+                                    </p>
+                                    <p>
+                                        {
+                                            historyMovies[randomMovie]
+                                                ?.release_date
+                                        }
+                                    </p>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <button className="  bg-[#111111]  py-4 px-4 rounded-[50%]">
-                                        <FaHeart />
-                                    </button>
-                                    <button className="  bg-[#111111]  py-4 px-4 rounded-[50%]">
-                                        <MdOutlineFileDownload />
-                                    </button>
-                                    <button className="  bg-[#111111]  py-4 px-4 rounded-[50%]">
-                                        <IoMdShareAlt />
-                                    </button>
+                                <div className="pb-10 flex items-center justify-between ">
+                                    <div className="flex items-center gap-7">
+                                        <button className="flex items-center gap-3 bg-white py-4 px-8 rounded-[40px]">
+                                            <FaPlayCircle
+                                                width={20}
+                                                hanging={20}
+                                                color="#111111"
+                                            />
+                                            <span className="text-black ">
+                                                Watch Now
+                                            </span>
+                                        </button>
+                                        <button className="btn flex items-center gap-3 bg-[#111111]  py-4 px-8 rounded-[40px]">
+                                            <MdOutlineBookmarkAdded
+                                                width={20}
+                                                hanging={20}
+                                                color="#fff"
+                                            />
+                                            <span className="text-white ">
+                                                Add Watchlist
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <button className="btn  bg-[#111111]  py-4 px-4 rounded-[50%]">
+                                            <FaHeart />
+                                        </button>
+                                        <button className="btn  bg-[#111111]  py-4 px-4 rounded-[50%]">
+                                            <MdOutlineFileDownload />
+                                        </button>
+                                        <button className="btn  bg-[#111111]  py-4 px-4 rounded-[50%]">
+                                            <IoMdShareAlt />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

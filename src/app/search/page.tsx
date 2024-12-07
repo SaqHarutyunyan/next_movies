@@ -13,12 +13,13 @@ type Movie = {
     poster_path: string | null;
     release_date: string | null;
     vote_average: number | null;
+    backdrop_path: string | null;
 };
 
 const page = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [searchText, setSearhText] = useState<string>("");
-    const [movies, setMovies] = useState<Movie | null>(null);
+    const [movies, setMovies] = useState<Movie[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearhText(e.target.value);
@@ -69,10 +70,12 @@ const page = () => {
                                 color="black"
                             />
                         </div>
-                        <button className="submit">Submit</button>
+                        <button className="submit">Search</button>
                     </form>
                     <div className="grid grid-cols-3 gap-3">
-                        {movies &&
+                        {movies.length === 0 ? (
+                            <p className="text-white">No movies found.</p>
+                        ) : (
                             movies?.map((movie, id) => {
                                 return (
                                     <Link
@@ -81,10 +84,18 @@ const page = () => {
                                     >
                                         <div className="movie_cont rounded-md relative overflow-hidden bg-slate-300">
                                             <img
-                                                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                                                alt={movie.title}
+                                                src={
+                                                    movie.backdrop_path
+                                                        ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                                                        : "/default-image.jpg"
+                                                }
+                                                alt={
+                                                    movie.title ||
+                                                    "No title available"
+                                                }
                                                 className="w-full h-auto"
                                             />
+
                                             <div className="movie_item absolute w-full h-full flex top-0 flex-col justify-center items-center gap-1 bg-[#1111119d] z-10">
                                                 <FaCirclePlay
                                                     color="white"
@@ -98,7 +109,8 @@ const page = () => {
                                         </div>
                                     </Link>
                                 );
-                            })}
+                            })
+                        )}
                     </div>
                 </div>
             )}

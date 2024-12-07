@@ -22,9 +22,10 @@ const Trailer = ({ id }: TrailerProps) => {
     }, [id]);
 
     return (
-        <div className="my-4">
+        <div className="my-4 ">
             {trailerKey ? (
                 <iframe
+                    className="rounded-3xl"
                     width="100%"
                     height="500"
                     src={`https://www.youtube.com/embed/${trailerKey}`}
